@@ -46,7 +46,7 @@ const Header = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation is done */}
           <div className="hidden md:flex items-center justify-between w-full">
             {/* Center Nav Links */}
             <div className="flex-1 flex justify-center gap-6 lg:gap-10">

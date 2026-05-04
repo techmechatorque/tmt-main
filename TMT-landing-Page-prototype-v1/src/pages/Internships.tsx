@@ -4,6 +4,7 @@ import { CheckCircle, Award, Target, BookOpen, GraduationCap, Building2, IndianR
 
 const Internships = () => {
   return (
+    // This is internships page
     <div className="min-h-screen">
       <Header />
       <main className="pt-20">
