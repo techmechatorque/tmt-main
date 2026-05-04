@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root{
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 0 100% 50%;
+    --radius: .75rem;
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 0 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96.1%;
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 0 100% 50%;
+    --gradient-accent: linear-gradient(135deg, hsl(0 100% 50%), #ff531a);
+    --gradient-dark: linear-gradient(135deg, hsl(240 10% 6%), hsl(240 10% 3.9%));
+    --shadow-glow: 0 0 40px -10px hsl(0 100% 50% / 0.3);
+    --shadow-card: 0 4px 24px -4px rgba(0, 0, 0, 0.08), 0 1px 4px -1px rgba(0,0,0,0.04);
+    /* Dot grid: red dots visible on light background */
+    --dot-color: rgba(255, 0, 0, 0.28);
+  }
+  .dark{
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 0 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 0 100% 50%;
+    --sidebar-background: 240 10% 3.9%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 0 100% 50%;
+    --shadow-glow: 0 0 40px -10px hsl(0 100% 50% / 0.4);
+    --shadow-card: 0 10px 40px -10px rgba(0,0,0,0.5);
+    /* Dot grid: red dots visible against dark background */
+    --dot-color: rgba(255, 0, 0, 0.22);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: var(--gradient-accent);
+  }
+
+  .btn-primary-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .card-professional, .card-premium {
+    border-width: 1px;
+    border-color: hsl(var(--border));
+    background-color: hsl(var(--card));
+    box-shadow: var(--shadow-card);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-professional:hover, .card-premium:hover {
+    box-shadow: var(--shadow-glow);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .shadow-professional, .shadow-professional-xl {
+    box-shadow: var(--shadow-card);
+  }
+  .hover\:shadow-professional-xl:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .heading-xl {
+    letter-spacing: -0.025em;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+  }
+  @media (min-width: 768px) {
+    .heading-xl {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+  @media (min-width: 1024px) {
+    .heading-xl {
+      font-size: 3.75rem;
+      line-height: 1;
+    }
+  }
+
+  .heading-lg {
+    letter-spacing: -0.025em;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 2.25rem;
+  }
+  @media (min-width: 768px) {
+    .heading-lg {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  .heading-md {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+  @media (min-width: 768px) {
+    .heading-md {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+  }
+
+  .nav-link {
+    color: hsl(var(--foreground) / 0.7);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .nav-link:hover {
+    color: hsl(var(--foreground));
+  }
+  .nav-link:after {
+    content: "";
+    background-color: hsl(var(--primary));
+    width: 0;
+    height: 0.125rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .nav-link:hover:after {
+    width: 100%;
+  }
+}
