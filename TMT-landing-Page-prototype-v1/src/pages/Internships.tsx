@@ -18,6 +18,18 @@ const Internships = () => {
             <p className="text-lg text-primary font-semibold max-w-3xl mx-auto mb-10">
               Level up from a Student to an Industry-Ready Developer.
             </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeMMDpaGwd57Z0GMbrxwn90EIqkIvr1zKkI2vP8OwOnHo5Zaw/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold text-lg px-10 py-4 rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(255,0,0,0.3)] hover:shadow-[0_0_45px_rgba(255,0,0,0.5)] hover:-translate-y-1">
+                Apply Now
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </a>
           </div>
         </section>
 

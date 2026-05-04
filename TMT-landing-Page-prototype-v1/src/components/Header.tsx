@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border shadow-sm transition-all duration-300">
+    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-border shadow-sm transition-all duration-300 ${isMenuOpen ? 'bg-background' : 'bg-background/80 backdrop-blur-xl'}`}>
       {/* ❌ REMOVE the white dot pattern div */}
 
       <div className="container mx-auto px-6 relative z-10">
@@ -132,6 +132,90 @@ const Header = () => {
             )}
           </Button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        {isMenuOpen && (
+          <div className="md:hidden fixed top-[80px] left-0 right-0 bottom-0 bg-background z-50 overflow-y-auto p-8 animate-in fade-in slide-in-from-top-4 duration-300 shadow-2xl">
+            <nav className="flex flex-col space-y-6">
+              <Link
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                Home
+              </Link>
+              <button
+                onClick={() => {
+                  scrollToSection("features");
+                  setIsMenuOpen(false);
+                }}
+                className="text-left text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                Solutions
+              </button>
+              <Link
+                to="/vision"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                Vision
+              </Link>
+              <Link
+                to="/founder"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                Leadership
+              </Link>
+              <Link
+                to="/careers"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                Careers
+              </Link>
+              <Link
+                to="/internships"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                Internships
+              </Link>
+              
+              <div className="pt-8 border-t border-border mt-4 flex flex-col space-y-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-medium text-foreground/60">Appearance</span>
+                  <button
+                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 text-foreground"
+                  >
+                    {theme === "dark" ? (
+                      <>
+                        <Sun className="w-5 h-5 text-primary" />
+                        <span className="font-medium">Light Mode</span>
+                      </>
+                    ) : (
+                      <>
+                        <Moon className="w-5 h-5 text-primary" />
+                        <span className="font-medium">Dark Mode</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+                
+                <Button
+                  onClick={() => {
+                    scrollToSection("contact");
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-7 rounded-2xl text-xl font-bold shadow-[0_10px_30px_rgba(255,0,0,0.3)] transition-all active:scale-95"
+                >
+                  Get Started
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
