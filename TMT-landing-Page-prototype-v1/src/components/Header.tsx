@@ -97,6 +97,15 @@ const Header = () => {
                 Internships
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </Link>
+
+              <Link
+                to="/ai-bootcamp"
+                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
+              >
+                AI Boot Camp
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+
             </div>
 
             {/* Right Side (Toggle + Contact) */}
@@ -181,6 +190,14 @@ const Header = () => {
               >
                 Internships
               </Link>
+              <Link
+                to="/ai-bootcamp"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                AI Boot Camp
+              </Link>
+
               
               <div className="pt-8 border-t border-border mt-4 flex flex-col space-y-6">
                 <div className="flex items-center justify-between">
