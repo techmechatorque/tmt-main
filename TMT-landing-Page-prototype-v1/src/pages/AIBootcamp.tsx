@@ -46,7 +46,7 @@ const AIBootcamp = () => {
     },
     {
       question: "Is the bootcamp really free?",
-      answer: "Yes, this specific 2-Day Generative AI Bootcamp is completely free as part of our community initiative to spread AI literacy."
+      answer: "Yes, this specific 1-Day Generative AI Bootcamp is completely free as part of our community initiative to spread AI literacy."
     },
     {
       question: "What is Hybrid Mode?",
@@ -61,7 +61,7 @@ const AIBootcamp = () => {
   const testimonials = [
     {
       name: "Koppera Abhiram Reddy",
-      text: "The hands-on approach at TMT is unmatched. I went from zero Python knowledge to building a chatbot in just two days!",
+      text: "The hands-on approach at TMT is unmatched. I went from zero Python knowledge to building a chatbot in just one day!",
       role: "AI Bootcamp Participant"
     },
     {
@@ -105,11 +105,11 @@ const AIBootcamp = () => {
           <div className="container mx-auto px-6 relative z-10 text-center animate-fade-up">
             <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full mb-6">
               <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
-              <span className="text-primary font-bold tracking-wide uppercase text-sm">FREE 2-Day Generative AI Bootcamp</span>
+              <span className="text-primary font-bold tracking-wide uppercase text-sm">FREE 1-Day Generative AI Bootcamp</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-extrabold mb-8 text-foreground leading-tight">
-              AI for <span className="text-gradient">Everyone</span>: Build Real Apps in 6 Hours
+              AI for <span className="text-gradient">Everyone</span>: Build Real Apps in 3 Hours
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-3xl mx-auto mb-6">
@@ -122,11 +122,11 @@ const AIBootcamp = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
               <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/50">
                 <Calendar className="w-6 h-6 text-primary" />
-                <span className="text-sm font-semibold">2 Days (Free)</span>
+                <span className="text-sm font-semibold">1 Day (Free)</span>
               </div>
               <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/50">
                 <Clock className="w-6 h-6 text-primary" />
-                <span className="text-sm font-semibold">3 Hours/Day</span>
+                <span className="text-sm font-semibold">3 Hours</span>
               </div>
               <div className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/50">
                 <Globe className="w-6 h-6 text-primary" />
@@ -263,14 +263,14 @@ const AIBootcamp = () => {
           <div className="container mx-auto px-6">
             <div className="text-center mb-16 animate-fade-up">
               <h2 className="text-4xl font-bold mb-4 text-foreground">Bootcamp Schedule 📚</h2>
-              <p className="text-xl text-muted-foreground">Two days of focused, hybrid learning</p>
+              <p className="text-xl text-muted-foreground">One day of focused, hybrid learning</p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto">
               {/* Day 1 */}
               <div className="card-premium p-10 border-primary/20 animate-fade-up shadow-lg">
                 <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-extrabold text-primary">Day 1 — Foundations</h3>
+                  <h3 className="text-2xl font-extrabold text-primary">1 Day — Comprehensive AI Training</h3>
                   <div className="bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold">3 Hours</div>
                 </div>
                 
@@ -278,87 +278,31 @@ const AIBootcamp = () => {
                   <div>
                     <h4 className="text-lg font-bold mb-3 flex items-center gap-2">
                       <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">1</span>
-                      Introduction to Generative AI
+                      Python & Generative AI Basics
                     </h4>
                     <ul className="pl-10 space-y-2 text-muted-foreground">
-                      <li>• What is Generative AI?</li>
-                      <li>• Understanding LLMs</li>
-                      <li>• AI applications for everyone</li>
+                      <li>• What is Generative AI & LLMs</li>
+                      <li>• Python essentials for AI</li>
                     </ul>
                   </div>
                   <div>
                     <h4 className="text-lg font-bold mb-3 flex items-center gap-2 text-primary">
                       <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">2</span>
-                      Python for AI (From Scratch)
+                      Prompt Engineering & APIs
                     </h4>
                     <ul className="pl-10 space-y-2 text-muted-foreground">
-                      <li>• Variables, Strings and Prompts</li>
-                      <li>• Lists and Dictionaries for AI data</li>
-                      <li>• Logic with Functions and Loops</li>
+                      <li>• Writing professional prompts</li>
+                      <li>• Connecting to AI APIs</li>
                     </ul>
                   </div>
                   <div>
                     <h4 className="text-lg font-bold mb-3 flex items-center gap-2">
                       <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">3</span>
-                      Prompt Engineering
-                    </h4>
-                    <ul className="pl-10 space-y-2 text-muted-foreground">
-                      <li>• Writing professional prompts</li>
-                      <li>• AI instruction techniques</li>
-                      <li>• Optimization and refinement</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold mb-3 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">4</span>
-                      First AI Application
-                    </h4>
-                    <ul className="pl-10 space-y-2 text-muted-foreground">
-                      <li>• Connecting to AI APIs</li>
-                      <li>• Building an AI content generator</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Day 2 */}
-              <div className="card-premium p-10 border-primary/20 animate-fade-up shadow-lg" style={{ animationDelay: '0.2s' }}>
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-extrabold text-primary">Day 2 — Building Apps</h3>
-                  <div className="bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold">3 Hours</div>
-                </div>
-                
-                <div className="space-y-8">
-                  <div>
-                    <h4 className="text-lg font-bold mb-3 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">1</span>
-                      AI Chatbot Development
-                    </h4>
-                    <ul className="pl-10 space-y-2 text-muted-foreground">
-                      <li>• Conversation handling & context</li>
-                      <li>• Memory and chat history</li>
-                      <li>• Building your personal assistant</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold mb-3 flex items-center gap-2 text-primary">
-                      <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">2</span>
                       Web Apps with Streamlit
                     </h4>
                     <ul className="pl-10 space-y-2 text-muted-foreground">
                       <li>• Turning code into a web interface</li>
-                      <li>• Interactive sliders and inputs</li>
-                      <li>• Deploying your first AI app</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold mb-3 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">3</span>
-                      Open Source AI & Hugging Face
-                    </h4>
-                    <ul className="pl-10 space-y-2 text-muted-foreground">
-                      <li>• Using local & open-source models</li>
-                      <li>• Future of AI ecosystems</li>
+                      <li>• Deploying your AI app</li>
                     </ul>
                   </div>
                   <div>
@@ -367,11 +311,8 @@ const AIBootcamp = () => {
                       Final Project
                     </h4>
                     <p className="pl-10 mb-2 text-sm text-muted-foreground italic">Build your portfolio piece:</p>
-                    <ul className="pl-10 space-y-1 text-muted-foreground grid grid-cols-2">
-                      <li>• AI Chatbot</li>
-                      <li>• AI Resume Gen</li>
-                      <li>• AI Study Asst</li>
-                      <li>• AI Blog Gen</li>
+                    <ul className="pl-10 space-y-1 text-muted-foreground">
+                      <li>• AI Chatbot (like ChatGPT)</li>
                     </ul>
                   </div>
                 </div>
