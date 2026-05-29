@@ -109,7 +109,7 @@ const AIBootcamp = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-extrabold mb-8 text-foreground leading-tight">
-              AI for <span className="text-gradient">Everyone</span>: Build Real Apps in 3 Hours
+              Python and AI for <span className="text-gradient">Everyone</span>: Build Real Apps in 3 Hours
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-3xl mx-auto mb-6">
@@ -404,7 +404,7 @@ const AIBootcamp = () => {
             <div className="card-premium bg-gradient-to-br from-primary/20 via-background to-primary/5 p-16 rounded-3xl text-center border-primary/20 animate-fade-up">
               <h2 className="text-5xl font-extrabold mb-6 text-foreground">Start Your AI Journey Today 🚀</h2>
               <p className="text-2xl text-muted-foreground font-medium mb-4 max-w-2xl mx-auto">
-                Join the <span className="text-primary font-bold">FREE</span> AI Bootcamp for Everyone.
+                Join the <span className="text-primary font-bold">FREE</span> Python and AI Bootcamp for Everyone.
               </p>
               <p className="text-lg text-muted-foreground mb-12 italic">Online & Offline Hybrid Mode</p>
               
