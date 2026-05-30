@@ -109,7 +109,7 @@ const AIBootcamp = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-extrabold mb-8 text-foreground leading-tight">
-              Python and AI for <span className="text-gradient">Everyone</span>: Build Real Apps in 3 Hours
+              Python and AI for <span className="text-gradient">Everyone</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-3xl mx-auto mb-6">
