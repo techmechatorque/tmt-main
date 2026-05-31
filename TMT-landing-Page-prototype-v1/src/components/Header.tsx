@@ -102,7 +102,7 @@ const Header = () => {
                 to="/ai-bootcamp"
                 className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
               >
-                AI Boot Camp
+                Bootcamps
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </Link>
 
@@ -182,13 +182,6 @@ const Header = () => {
                 className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
               >
                 Careers
-              </Link>
-              <Link
-                to="/internships"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Internships
               </Link>
               <Link
                 to="/ai-bootcamp"
