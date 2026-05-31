@@ -11,7 +11,7 @@ import Auth from "./pages/Auth";
 // import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import ParticleBackground from "./ParticleBackground";
-import Internships from "./pages/Internships";
+// import Internships from "./pages/Internships";
 import AIBootcamp from "./pages/AIBootcamp";
 
 import { ThemeProvider } from "./components/ThemeProvider";
@@ -32,7 +32,7 @@ const App = () => (
           <Route path="/careers" element={<Careers />} />
           <Route path="/vision" element={<Vision />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/internships" element={<Internships />} />
+          {/* <Route path="/internships" element={<Internships />} /> */}
           <Route path="/ai-bootcamp" element={<AIBootcamp />} />
 
           {/* <Route path="/admin" element={<Admin />} /> */}

@@ -90,13 +90,13 @@ const Header = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </Link>
 
-              <Link
+              {/* <Link
                 to="/internships"
                 className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
               >
                 Internships
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+              </Link> */}
 
               <Link
                 to="/ai-bootcamp"

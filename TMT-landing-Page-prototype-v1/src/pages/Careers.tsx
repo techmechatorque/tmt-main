@@ -82,9 +82,9 @@ const Careers = () => {
               </div>
               
               <div className="mt-8">
-                <Link to="/internships">
+                <Link to="/">
                   <Button className="btn-primary-glow text-lg px-8 py-6 rounded-full">
-                    View Internship Program
+                    No active programs currently
                   </Button>
                 </Link>
               </div>
