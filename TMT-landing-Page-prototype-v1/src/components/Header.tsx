@@ -188,7 +188,7 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
               >
-                AI Boot Camp
+                Bootcamps
               </Link>
 
               
