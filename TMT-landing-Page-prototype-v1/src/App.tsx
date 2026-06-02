@@ -33,7 +33,7 @@ const App = () => (
           <Route path="/vision" element={<Vision />} />
           <Route path="/auth" element={<Auth />} />
           {/* <Route path="/internships" element={<Internships />} /> */}
-          <Route path="/ai-bootcamp" element={<AIBootcamp />} />
+          <Route path="/bootcamps" element={<AIBootcamp />} />
 
           {/* <Route path="/admin" element={<Admin />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -99,7 +99,7 @@ const Header = () => {
               </Link> */}
 
               <Link
-                to="/ai-bootcamp"
+                to="/bootcamps"
                 className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
               >
                 Bootcamps
@@ -184,7 +184,7 @@ const Header = () => {
                 Careers
               </Link>
               <Link
-                to="/ai-bootcamp"
+                to="/bootcamps"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
               >
