@@ -13,7 +13,8 @@ import NotFound from "./pages/NotFound";
 import ParticleBackground from "./ParticleBackground";
 // import Internships from "./pages/Internships";
 import AIBootcamp from "./pages/AIBootcamp";
-
+import Certifications from "./pages/Certifications";
+import CourseCurriculum from "./pages/CourseCurriculum";
 import { ThemeProvider } from "./components/ThemeProvider";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,8 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           {/* <Route path="/internships" element={<Internships />} /> */}
           <Route path="/bootcamps" element={<AIBootcamp />} />
+          <Route path="/certifications" element={<Certifications />} />
+          <Route path="/course/:courseId" element={<CourseCurriculum />} />
 
           {/* <Route path="/admin" element={<Admin />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

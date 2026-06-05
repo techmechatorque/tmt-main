@@ -53,7 +53,7 @@ const Hero = () => {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://wa.me/7993442607?text=Hi%20I'm%20interested%20in%20TechMecha%20Torque"
+              href="https://wa.me/917993442607?text=Hi%20I'm%20interested%20in%20TechMecha%20Torque"
               target="_blank"
               rel="noopener noreferrer"
             >
