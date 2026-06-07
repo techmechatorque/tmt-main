@@ -31,7 +31,7 @@ const Certifications = () => {
         <div className="max-w-[1400px] mx-auto relative z-10">
           <div className="text-center mb-16 animate-fade-up">
             <h1 className="text-5xl md:text-7xl font-black mb-6 text-foreground leading-tight tracking-tighter">
-              LEARNING <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">TRACKS</span>
+              LEARNING <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">PROGRAMS</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
               Master the most demanded skills through our structured, intensive learning pathways designed for industry readiness.
@@ -42,9 +42,9 @@ const Certifications = () => {
           <div className="mb-16 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-2xl p-6 md:p-8 flex items-start gap-4 shadow-lg animate-fade-up max-w-5xl mx-auto">
             <Info className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h3 className="text-xl font-bold mb-2 text-foreground">Modular & Flexible Learning</h3>
+              <h3 className="text-xl font-bold mb-2 text-foreground">Flexible Learning Options</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Each course listed below is an independent, complete <strong>1-month module</strong>. You have the total flexibility to enroll in individual courses based on your current skill level. However, for the best comprehensive learning experience, <strong>we strongly recommend following the tracks in the provided flow from Month 1 to Month 3</strong>.
+                Choose between our foundational <strong>Basics (1 Month)</strong> courses to start your journey, or dive into our comprehensive <strong>Internship Training Programs (2-3 Months)</strong> for advanced, project-based mastery.
               </p>
             </div>
           </div>
@@ -61,12 +61,26 @@ const Certifications = () => {
 
                 <div className="flex flex-col flex-grow">
                   {track.courses.map((course, courseIdx) => {
+                    const isBasics = course.month === "Month - 1";
+                    const isFirstInternship = course.month === "Month - 2";
                     const whatsappMessage = encodeURIComponent(`Hi, I am interested in the ${course.name} course. Could you please provide more details?`);
                     const whatsappUrl = `https://wa.me/917993442607?text=${whatsappMessage}`;
 
                     return (
                       <div key={courseIdx} className="flex flex-col items-center w-full">
                         
+                        {/* Section Labels within flow */}
+                        {isBasics && (
+                           <div className="bg-primary/10 text-primary border border-primary/20 px-5 py-1.5 rounded-full mb-6 text-sm font-bold uppercase tracking-widest shadow-sm">
+                             Basics (1 Month)
+                           </div>
+                        )}
+                        {isFirstInternship && (
+                           <div className="bg-blue-500/10 text-blue-500 border border-blue-500/20 px-4 py-1.5 rounded-full mb-6 text-xs font-bold uppercase tracking-widest text-center shadow-sm max-w-[90%] leading-tight">
+                             Internship Training Program
+                           </div>
+                        )}
+
                         {/* Course Card */}
                         <FadeInView delay={courseIdx * 100} className="w-full">
                           <Card className="w-full h-full min-h-[280px] flex flex-col group border-white/5 bg-card/20 backdrop-blur-sm hover:bg-card/40 hover:border-primary/30 transition-all duration-500 shadow-xl shadow-black/5 hover:shadow-primary/10 overflow-hidden relative">
@@ -79,7 +93,7 @@ const Certifications = () => {
                             </div>
                             
                             <div className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
-                              {course.month}
+                              {isBasics ? "Month - 1" : (course.month === "Month - 2" ? "Phase 1" : "Phase 2")}
                             </div>
                             
                             <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">{course.name}</h3>
@@ -89,15 +103,13 @@ const Certifications = () => {
                             </p>
                             
                             {/* Buttons */}
-                            <div className="flex items-center w-full gap-2 mt-auto pt-4 border-t border-border/10">
-                              <Link to={`/course/${course.id}`} className="flex-1">
-                                <Button variant="ghost" size="sm" className="w-full text-xs font-semibold rounded-lg h-9 hover:bg-primary/5 text-foreground/70 hover:text-primary transition-colors">
-                                  Curriculum
-                                </Button>
-                              </Link>
-                              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
-                                <Button variant="outline" size="sm" className="w-full text-xs font-semibold rounded-lg h-9 border-[#25D366]/20 hover:bg-[#25D366]/10 text-[#25D366] hover:text-[#25D366] transition-colors">
-                                  <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Contact
+                            <div className="flex items-center w-full mt-auto pt-5 border-t border-border/10">
+                              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full block group/btn">
+                                <Button 
+                                  variant="outline" 
+                                  className="w-full text-sm font-semibold rounded-xl h-11 bg-[#25D366]/5 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all duration-300 shadow-sm group-hover/btn:shadow-[#25D366]/20"
+                                >
+                                  <MessageCircle className="w-4 h-4 mr-2" /> Contact
                                 </Button>
                               </a>
                             </div>
