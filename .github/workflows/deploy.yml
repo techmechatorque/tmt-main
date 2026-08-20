@@ -1,0 +1,45 @@
+name: Deploy Vite Application
+
+on:
+  push:
+    branches:
+      - ec2-docker-ssl
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker Image
+        run: |
+          docker build \
+            -t techmechatorque/tmtfrontend \
+            --build-arg VITE_API_URL='${{ secrets.VITE_API_URL }}' \
+            .
+
+      - name: Publish Image to Docker Hub
+        run: docker push techmechatorque/tmtfrontend:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull Image from Docker Hub
+        run: docker pull techmechatorque/tmtfrontend:latest
+
+      - name: Delete Old Container
+        run: docker rm -f tmtfrontend-container || true
+
+      - name: Run Docker Container
+        run: |
+          docker run -d \
+            -p 3000:80 \
+            --name tmtfrontend-container \
+            techmechatorque/tmtfrontend
