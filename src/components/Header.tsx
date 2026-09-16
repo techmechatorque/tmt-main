@@ -1,247 +1,177 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import tmtLogo from "@/assets/tmt-logo2.png";
 
+const NAV_LINKS = [
+  { to: "/services", label: "Services" },
+  { to: "/products", label: "Products" },
+  { to: "/training", label: "Training" },
+  { to: "/work", label: "Work" },
+  { to: "/about", label: "About" },
+  { to: "/careers", label: "Careers" },
+];
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
+  const location = useLocation();
 
-  const scrollToSection = (sectionId: string) => {
-    // If we're not on the home page, navigate there first
-    if (window.location.pathname !== "/") {
-      navigate("/", { replace: true });
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        element?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    } else {
-      const element = document.getElementById(sectionId);
-      element?.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
+  const isActive = (to: string) => location.pathname === to || location.pathname.startsWith(`${to}/`);
+
+  // Transparent right at the top (floats over the hero, as intended), but once you
+  // scroll past it the header needs its own background — otherwise whatever's
+  // behind it (a screenshot, a light/dark card) shows straight through and clashes
+  // with the logo/nav text instead of reading as "the header."
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-border shadow-sm transition-all duration-300 ${isMenuOpen ? 'bg-background' : 'bg-background/80 backdrop-blur-xl'}`}>
-      {/* ❌ REMOVE the white dot pattern div */}
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo (unchanged, just slight polish) */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <img
-              src={tmtLogo}
-              alt="TMT Logo"
-              className="h-14 w-auto group-hover:scale-105 transition-transform duration-300 mix-blend-multiply"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className="text-lg font-bold text-foreground tracking-tight">
-                TechMecha
-              </span>
-              <span className="text-lg font-bold text-primary">Torque</span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation*/}
-          <div className="hidden md:flex items-center justify-between w-full">
-            {/* Center Nav Links */}
-            <div className="flex-1 flex justify-center gap-6 lg:gap-10">
-              <Link
-                to="/"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-              <button
-                onClick={() => scrollToSection("features")}
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Solutions
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </button>
-
-              <Link
-                to="/vision"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Vision
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-              <Link
-                to="/founder"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Leadership
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-              <Link
-                to="/careers"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Careers
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-              {/* <Link
-                to="/internships"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Internships
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link> */}
-
-              <Link
-                to="/bootcamps"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Bootcamps
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-              <Link
-                to="/certifications"
-                className="text-foreground/70 hover:text-foreground transition-all duration-300 font-medium relative group"
-              >
-                Certifications
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-
-            </div>
-
-            {/* Right Side (Toggle + Contact) */}
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-all duration-300 backdrop-blur-md"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? <Sun className="w-5 h-5 text-foreground" /> : <Moon className="w-5 h-5 text-foreground" />}
-              </button>
-
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 rounded-full font-medium transition-all duration-300 shadow-[0_0_20px_rgba(255,0,0,0.4)] hover:scale-105"
-              >
-                Contact
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button (same, slight polish) */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-foreground hover:bg-foreground/10"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </Button>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="md:hidden fixed top-[80px] left-0 right-0 bottom-0 bg-background z-50 overflow-y-auto p-8 animate-in fade-in slide-in-from-top-4 duration-300 shadow-2xl">
-            <nav className="flex flex-col space-y-6">
-              <Link
-                to="/"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-              <button
-                onClick={() => {
-                  scrollToSection("features");
-                  setIsMenuOpen(false);
-                }}
-                className="text-left text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Solutions
-              </button>
-              <Link
-                to="/vision"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Vision
-              </Link>
-              <Link
-                to="/founder"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Leadership
-              </Link>
-              <Link
-                to="/careers"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Careers
-              </Link>
-              <Link
-                to="/bootcamps"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Bootcamps
-              </Link>
-              <Link
-                to="/certifications"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
-              >
-                Certifications
-              </Link>
-
-              
-              <div className="pt-8 border-t border-border mt-4 flex flex-col space-y-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-medium text-foreground/60">Appearance</span>
-                  <button
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 text-foreground"
-                  >
-                    {theme === "dark" ? (
-                      <>
-                        <Sun className="w-5 h-5 text-primary" />
-                        <span className="font-medium">Light Mode</span>
-                      </>
-                    ) : (
-                      <>
-                        <Moon className="w-5 h-5 text-primary" />
-                        <span className="font-medium">Dark Mode</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-                
-                <Button
-                  onClick={() => {
-                    scrollToSection("contact");
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-7 rounded-2xl text-xl font-bold shadow-[0_10px_30px_rgba(255,0,0,0.3)] transition-all active:scale-95"
-                >
-                  Get Started
-                </Button>
+    <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4">
+      <div
+        className={`mx-auto max-w-7xl rounded-2xl transition-all duration-300 ${
+          isScrolled
+            ? "bg-background/90 backdrop-blur-xl border border-border shadow-professional"
+            : "bg-transparent border border-transparent"
+        }`}
+      >
+        <div className="px-2 sm:px-4">
+          <div className="flex items-center justify-between h-20">
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="flex items-center gap-3 group"
+            >
+              <img
+                src={tmtLogo}
+                alt="TMT Logo"
+                className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="flex flex-col leading-tight">
+                <span className="text-lg font-bold text-foreground tracking-tight">
+                  TechMecha
+                </span>
+                <span className="text-lg font-bold text-primary">Torque</span>
               </div>
-            </nav>
+            </Link>
+
+            {/* Desktop Navigation — logo stays front-left, this nav pill sits in the
+                middle, theme toggle + Contact anchor the end (right) */}
+            <div className="hidden xl:flex items-center justify-between w-full">
+              <div className="flex-1 flex justify-center">
+                <div className="flex items-center gap-2 rounded-full bg-foreground/5 border border-foreground/10 p-2">
+                  {NAV_LINKS.map((link) => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                        isActive(link.to)
+                          ? "bg-background text-foreground shadow-sm"
+                          : "text-foreground/60 hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-11 h-11 flex items-center justify-center rounded-full bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 transition-all duration-300 backdrop-blur-md"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "dark" ? <Sun className="w-5 h-5 text-foreground" /> : <Moon className="w-5 h-5 text-foreground" />}
+                </button>
+
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2.5 rounded-lg font-semibold text-base transition-all duration-300 btn-primary-glow hover:-translate-y-0.5"
+                >
+                  Start a project
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="xl:hidden text-foreground hover:bg-foreground/10"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </Button>
           </div>
-        )}
+        </div>
       </div>
+
+      {/* Mobile Menu Overlay — floats as its own glass panel below the header bar */}
+      {isMenuOpen && (
+        <div className="xl:hidden fixed top-24 left-4 right-4 bottom-4 bg-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl z-50 overflow-y-auto p-8 animate-in fade-in slide-in-from-top-4 duration-300 shadow-2xl">
+          <nav className="flex flex-col space-y-6">
+            <Link
+              to="/"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+            >
+              Home
+            </Link>
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsMenuOpen(false)}
+                className="text-2xl font-semibold text-foreground/90 hover:text-primary transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            <div className="pt-8 border-t border-border mt-4 flex flex-col space-y-6">
+              <div className="flex items-center justify-between">
+                <span className="text-lg font-medium text-foreground/60">Appearance</span>
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 border border-foreground/10 text-foreground"
+                >
+                  {theme === "dark" ? (
+                    <>
+                      <Sun className="w-5 h-5 text-primary" />
+                      <span className="font-medium">Light Mode</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-5 h-5 text-primary" />
+                      <span className="font-medium">Dark Mode</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-7 rounded-lg text-xl font-bold btn-primary-glow transition-all active:scale-95 gap-2">
+                  Start a project
+                  <ArrowUpRight className="w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

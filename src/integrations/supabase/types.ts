@@ -107,6 +107,37 @@ export type Database = {
         }
         Relationships: []
       }
+      // Hand-added ahead of the migration in supabase/migrations/20260902_contact_submissions.sql
+      // being applied — this file is normally regenerated via `supabase gen types
+      // typescript`; re-run that once the migration lands and this block can be
+      // dropped in favor of the real generated one.
+      contact_submissions: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          message: string
+          honeypot: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          message: string
+          honeypot?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          message?: string
+          honeypot?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

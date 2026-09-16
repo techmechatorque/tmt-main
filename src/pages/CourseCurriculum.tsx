@@ -4,11 +4,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getCourseById } from "@/data/courses";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Calendar, Clock, MessageCircle } from "lucide-react";
+import { FadeInView } from "@/components/FadeInView";
+import { usePageMeta } from "@/hooks/use-page-meta";
+import { ArrowLeft, BookOpen, Calendar, MessageCircle } from "lucide-react";
 
 const CourseCurriculum = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const course = courseId ? getCourseById(courseId) : undefined;
+
+  usePageMeta({
+    title: course?.name ?? "Course",
+    description: course?.desc ?? "",
+    path: `/training/courses/${courseId ?? ""}`,
+  });
 
   if (!course) {
     return (
@@ -16,7 +24,7 @@ const CourseCurriculum = () => {
         <Header />
         <div className="flex-grow flex items-center justify-center flex-col">
           <h1 className="text-4xl font-bold mb-4">Course Not Found</h1>
-          <Link to="/certifications">
+          <Link to="/training/certifications">
             <Button>Return to Certifications</Button>
           </Link>
         </div>
@@ -31,27 +39,25 @@ const CourseCurriculum = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      
-      <main className="flex-grow pt-24 pb-16 px-6 relative overflow-hidden">
-        {/* Background glow */}
+
+      <main className="flex-grow pt-28 pb-16 px-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
         <div className="max-w-5xl mx-auto relative z-10">
-          <Link to="/certifications" className="inline-flex items-center text-muted-foreground hover:text-primary mb-8 transition-colors">
+          <Link to="/training/certifications" className="inline-flex items-center text-muted-foreground hover:text-primary mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Learning Tracks
           </Link>
 
-          {/* Hero Section */}
-          <div className="bg-card/20 backdrop-blur-sm border border-white/5 rounded-3xl p-8 md:p-12 mb-16 shadow-2xl relative overflow-hidden">
+          <FadeInView className="card-professional p-8 md:p-12 mb-16 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               {course.icon}
             </div>
-            
+
             <div className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10">
               <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center flex-shrink-0 shadow-inner border border-primary/20">
                 {React.cloneElement(course.icon as React.ReactElement, { className: "w-12 h-12 text-primary" })}
               </div>
-              
+
               <div className="flex-grow">
                 <div className="text-primary font-bold tracking-wider uppercase text-sm mb-2 flex items-center gap-2">
                   <Calendar className="w-4 h-4" /> 1 Month Duration
@@ -70,25 +76,24 @@ const CourseCurriculum = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </FadeInView>
 
-          {/* Curriculum Section */}
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+            <FadeInView as="h2" className="text-3xl font-bold mb-8 flex items-center gap-3">
               <BookOpen className="w-8 h-8 text-primary" />
               Course Curriculum
-            </h2>
+            </FadeInView>
 
             <div className="space-y-10">
-              {course.curriculum.map((week) => (
-                <div key={week.week} className="bg-card/10 backdrop-blur-sm border border-white/5 rounded-[2rem] p-6 md:p-8 animate-fade-up">
+              {course.curriculum.map((week, index) => (
+                <FadeInView key={week.week} delay={index * 100} className="card-professional p-6 md:p-8">
                   <h3 className="text-2xl font-bold mb-6 text-primary border-b border-primary/10 pb-4">
                     Week {week.week}: {week.title}
                   </h3>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
                     {week.days.map((day) => (
-                      <div key={day.day} className="bg-card/20 rounded-2xl p-5 border border-white/5 hover:border-primary/20 hover:bg-card/30 transition-all shadow-sm">
+                      <div key={day.day} className="bg-card border border-border rounded-xl p-5 hover:border-primary/20 transition-colors">
                         <div className="text-xs font-bold text-primary tracking-wider uppercase mb-3">Day {day.day}</div>
                         <h4 className="font-semibold text-sm mb-4 text-foreground/90">{day.title}</h4>
                         <ul className="space-y-2.5">
@@ -102,14 +107,13 @@ const CourseCurriculum = () => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </FadeInView>
               ))}
             </div>
           </div>
-
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
