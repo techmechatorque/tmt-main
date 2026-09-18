@@ -23,6 +23,8 @@ Deno.serve(async (req: Request) => {
     return new Response("RESEND_API_KEY not configured", { status: 500 });
   }
 
+  
+
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {

@@ -60,16 +60,16 @@ const WhatWeDo = () => {
   }, []);
 
   return (
-    <section className="py-16">
+    <section className="py-10 sm:py-16">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Heading heptagon — 7 sides for 7 services, with a labeled box per service
               at each corner, slowly rotating clockwise. Hovering the shape eases the
               rotation to a stop; moving off eases it back up. Clicking (or hovering,
               on the list to the right) opens the matching item. */}
-          <FadeInView className="flex justify-center">
+          <FadeInView className="hidden md:flex justify-center">
             <div
-              className="relative w-full max-w-[400px] aspect-square"
+              className="relative w-full max-w-[300px] sm:max-w-[400px] aspect-square"
               onMouseEnter={() => (isHoveredRef.current = true)}
               onMouseLeave={() => (isHoveredRef.current = false)}
             >
@@ -104,7 +104,7 @@ const WhatWeDo = () => {
                       ref={(el) => (markerRefs.current[index] = el)}
                       onClick={() => setOpenIndex(isActive ? -1 : index)}
                       onMouseEnter={() => setOpenIndex(index)}
-                      className={`absolute flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border whitespace-nowrap transition-colors duration-300 ${
+                      className={`absolute hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border max-w-[160px] md:max-w-none md:whitespace-nowrap transition-colors duration-300 ${
                         isActive
                           ? "bg-primary/15 border-primary text-primary"
                           : "bg-background border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
@@ -112,7 +112,7 @@ const WhatWeDo = () => {
                       style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
                     >
                       <s.icon className="w-3.5 h-3.5 flex-shrink-0" />
-                      <span className="text-xs font-semibold">{s.title}</span>
+                      <span className="text-xs font-semibold leading-tight">{s.title}</span>
                     </button>
                   );
                 })}
@@ -120,7 +120,7 @@ const WhatWeDo = () => {
 
               {/* Center text — stays upright, not part of the rotating group */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-10 sm:px-12 pointer-events-none">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground">What we do</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-foreground">Our services</h2>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   TechMecha Torque builds digital platforms end to end — from first design
                   through to a product people actually use.

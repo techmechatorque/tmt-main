@@ -20,11 +20,11 @@ const Products = () => {
       <main className="pt-32 pb-20">
         <ToolsMarquee />
         <div className="container mx-auto px-6">
-          <FadeInView className="max-w-3xl mb-16 mt-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-              What we build
+          <FadeInView className="max-w-3xl mb-10 sm:mb-16 mt-10 sm:mt-16">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 text-foreground">
+              Built Today, Shaping Tomorrow
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
               One platform is live and in use today. The rest are honestly labelled by
               status — nothing here claims to be more finished than it is.
             </p>

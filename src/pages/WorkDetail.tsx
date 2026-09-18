@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScreenshotPanel from "@/components/showcase/ScreenshotPanel";
@@ -34,32 +34,20 @@ const WorkDetail = () => {
 
           <FadeInView>
             <div>
-              <span className="text-sm font-bold uppercase tracking-wide text-primary">{item.client}</span>
-              <h1 className="text-4xl md:text-6xl font-bold mt-2 mb-6 text-foreground">{item.title}</h1>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wide text-primary">{item.client}</span>
+              <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mt-2 mb-4 sm:mb-6 text-foreground">{item.title}</h1>
             </div>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-10">{item.summary}</p>
-
-            {item.liveUrl && (
-              <a
-                href={item.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 mb-16"
-              >
-                Visit site
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            )}
+            <p className="text-sm sm:text-lg text-muted-foreground leading-relaxed mb-10 sm:mb-16">{item.summary}</p>
           </FadeInView>
 
           <ScreenshotPanel slug={item.slug} liveUrl={item.liveUrl} />
 
-          <FadeInView as="h2" className="text-2xl font-bold mb-6 text-foreground block">
+          <FadeInView as="h2" className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground block">
             Scope
           </FadeInView>
-          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             {item.scope.map((s, index) => (
-              <FadeInView key={s} as="li" delay={index * 100} className="card-professional p-4 text-center font-medium text-foreground/90">
+              <FadeInView key={s} as="li" delay={index * 100} className="card-professional p-3 sm:p-4 text-center text-sm sm:text-base font-medium text-foreground/90">
                 {s}
               </FadeInView>
             ))}

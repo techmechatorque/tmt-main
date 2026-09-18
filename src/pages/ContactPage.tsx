@@ -18,18 +18,18 @@ const ContactPage = () => {
       <Header />
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-6">
-          <FadeInView className="max-w-3xl mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
+          <FadeInView className="max-w-3xl mb-10 sm:mb-16">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 text-foreground">
               Let's talk
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
               Tell us what you're looking to build.
             </p>
           </FadeInView>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 max-w-5xl">
             <FadeInView className="lg:col-span-3">
-              <div className="card-professional p-8">
+              <div className="card-professional p-5 sm:p-8">
                 <ContactForm />
               </div>
             </FadeInView>

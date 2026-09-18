@@ -1,5 +1,6 @@
 interface BrowserFrameProps {
-  url: string;
+  /** Shown as the address-bar text — omit to leave the chrome bar's URL slot blank. */
+  url?: string;
   src: string;
   alt: string;
   className?: string;
@@ -24,7 +25,7 @@ const BrowserFrame = ({ url, src, alt, className = "", notch = false }: BrowserF
       <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
       <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
       <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-      <span className="ml-3 text-[11px] text-white/40 font-mono truncate">{url}</span>
+      {url && <span className="ml-3 text-[11px] text-white/40 font-mono truncate">{url}</span>}
     </div>
     <img src={src} alt={alt} className="w-full h-auto block" loading="lazy" />
   </div>

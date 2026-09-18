@@ -21,35 +21,35 @@ const AIBootcamp = () => {
         </div>
 
         <FadeInView className="max-w-4xl mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-sm tracking-wider mb-8">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 text-primary font-bold text-xs sm:text-sm tracking-wider mb-5 sm:mb-8">
             <Sparkles className="w-4 h-4" />
             PLANNED
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black mb-6 text-foreground leading-tight tracking-tighter">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 sm:mb-6 text-foreground leading-tight tracking-tighter">
             BOOTCAMPS
             <br />
             <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">IN PLANNING</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
             Intensive, hands-on learning experiences — scoped, not yet built.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <div className="card-professional flex items-center gap-3 px-6 py-4">
-              <Calendar className="w-6 h-6 text-primary" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <div className="card-professional flex items-center gap-3 px-5 sm:px-6 py-3 sm:py-4">
+              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               <div className="text-left">
-                <p className="text-sm text-muted-foreground font-medium">Expected Launch</p>
-                <p className="font-bold text-foreground">TBA</p>
+                <p className="text-xs sm:text-sm text-muted-foreground font-medium">Expected Launch</p>
+                <p className="text-sm sm:text-base font-bold text-foreground">TBA</p>
               </div>
             </div>
 
-            <div className="card-professional flex items-center gap-3 px-6 py-4">
-              <ClipboardList className="w-6 h-6 text-primary" />
+            <div className="card-professional flex items-center gap-3 px-5 sm:px-6 py-3 sm:py-4">
+              <ClipboardList className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               <div className="text-left">
-                <p className="text-sm text-muted-foreground font-medium">Status</p>
-                <p className="font-bold text-foreground">Planned</p>
+                <p className="text-xs sm:text-sm text-muted-foreground font-medium">Status</p>
+                <p className="text-sm sm:text-base font-bold text-foreground">Planned</p>
               </div>
             </div>
           </div>

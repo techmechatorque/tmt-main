@@ -23,7 +23,7 @@ const CourseCurriculum = () => {
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
         <div className="flex-grow flex items-center justify-center flex-col">
-          <h1 className="text-4xl font-bold mb-4">Course Not Found</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold mb-4">Course Not Found</h1>
           <Link to="/training/certifications">
             <Button>Return to Certifications</Button>
           </Link>
@@ -48,29 +48,29 @@ const CourseCurriculum = () => {
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Learning Tracks
           </Link>
 
-          <FadeInView className="card-professional p-8 md:p-12 mb-16 relative overflow-hidden">
+          <FadeInView className="card-professional p-5 sm:p-8 md:p-12 mb-10 sm:mb-16 relative overflow-hidden">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               {course.icon}
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10">
-              <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center flex-shrink-0 shadow-inner border border-primary/20">
-                {React.cloneElement(course.icon as React.ReactElement, { className: "w-12 h-12 text-primary" })}
+            <div className="flex flex-col md:flex-row gap-5 sm:gap-8 items-start md:items-center relative z-10">
+              <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center flex-shrink-0 shadow-inner border border-primary/20">
+                {React.cloneElement(course.icon as React.ReactElement, { className: "w-8 h-8 sm:w-12 sm:h-12 text-primary" })}
               </div>
 
               <div className="flex-grow">
-                <div className="text-primary font-bold tracking-wider uppercase text-sm mb-2 flex items-center gap-2">
+                <div className="text-primary font-bold tracking-wider uppercase text-xs sm:text-sm mb-2 flex items-center gap-2">
                   <Calendar className="w-4 h-4" /> 1 Month Duration
                 </div>
-                <h1 className="text-4xl md:text-5xl font-black mb-4 text-foreground">{course.name}</h1>
-                <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4 text-foreground">{course.name}</h1>
+                <p className="text-sm sm:text-xl text-muted-foreground leading-relaxed max-w-3xl">
                   {course.desc}
                 </p>
               </div>
 
               <div className="flex-shrink-0 flex flex-col gap-4 w-full md:w-auto">
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full">
-                  <Button size="lg" variant="outline" className="w-full border-[#25D366]/30 hover:bg-[#25D366]/10 text-[#25D366] hover:text-[#25D366] font-semibold rounded-xl h-14 text-lg flex items-center justify-center gap-2 transition-all">
+                  <Button size="lg" variant="outline" className="w-full border-[#25D366]/30 hover:bg-[#25D366]/10 text-[#25D366] hover:text-[#25D366] font-semibold rounded-xl h-11 sm:h-14 text-sm sm:text-lg flex items-center justify-center gap-2 transition-all">
                     <MessageCircle className="w-5 h-5" /> Contact to Enroll
                   </Button>
                 </a>
@@ -79,15 +79,15 @@ const CourseCurriculum = () => {
           </FadeInView>
 
           <div className="mb-8">
-            <FadeInView as="h2" className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <BookOpen className="w-8 h-8 text-primary" />
+            <FadeInView as="h2" className="text-xl sm:text-3xl font-bold mb-5 sm:mb-8 flex items-center gap-3">
+              <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
               Course Curriculum
             </FadeInView>
 
-            <div className="space-y-10">
+            <div className="space-y-6 sm:space-y-10">
               {course.curriculum.map((week, index) => (
-                <FadeInView key={week.week} delay={index * 100} className="card-professional p-6 md:p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-primary border-b border-primary/10 pb-4">
+                <FadeInView key={week.week} delay={index * 100} className="card-professional p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-primary border-b border-primary/10 pb-3 sm:pb-4">
                     Week {week.week}: {week.title}
                   </h3>
 

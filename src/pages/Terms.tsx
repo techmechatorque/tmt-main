@@ -17,12 +17,12 @@ const Terms = () => {
       <Header />
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-6 max-w-3xl">
-          <h1 className="text-4xl font-bold mb-2 text-foreground">Terms of Service</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-foreground">Terms of Service</h1>
           <p className="text-sm text-muted-foreground mb-10">Last updated: {LAST_UPDATED}</p>
 
           <div className="space-y-8 text-foreground/90 leading-relaxed">
             <section>
-              <h2 className="text-xl font-bold text-foreground mb-3">Using this website</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3">Using this website</h2>
               <p>
                 This website is operated by {company.legalName}. By using it, you agree to
                 these terms. If you don't agree, please don't use the site.
@@ -30,7 +30,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-foreground mb-3">Product status</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3">Product status</h2>
               <p>
                 Products on this site are labelled Live, Building, or Planned. Live means the
                 product is publicly available and usable today. Building means it is in active
@@ -40,7 +40,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-foreground mb-3">Third-party products</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3">Third-party products</h2>
               <p>
                 Learning Spaces and any other linked products are operated separately from this
                 site and have their own terms and policies, which apply when you use them.
@@ -48,7 +48,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-foreground mb-3">No warranty</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3">No warranty</h2>
               <p>
                 This website and its content are provided as-is. We make reasonable efforts to
                 keep information accurate but don't guarantee it will be error-free or
@@ -57,7 +57,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-foreground mb-3">Engaging us for work</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3">Engaging us for work</h2>
               <p>
                 Anything discussed through the contact form, email, or WhatsApp is not a
                 binding agreement until confirmed in writing by both parties. Project-specific
@@ -66,7 +66,7 @@ const Terms = () => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-foreground mb-3">Contact</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground mb-3">Contact</h2>
               <p>
                 {company.legalName}, {company.address.line1}, {company.address.region}{" "}
                 {company.address.postalCode}, {company.address.country}.

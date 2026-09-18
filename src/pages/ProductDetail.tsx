@@ -45,9 +45,9 @@ const ProductDetail = () => {
               <span className="text-sm text-muted-foreground">{product.category}</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-foreground">{product.name}</h1>
-            <p className="text-xl text-primary font-semibold mb-6">{product.tagline}</p>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mb-10">
+            <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-3 sm:mb-4 text-foreground">{product.name}</h1>
+            <p className="text-base sm:text-xl text-primary font-semibold mb-4 sm:mb-6">{product.tagline}</p>
+            <p className="text-sm sm:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-6 sm:mb-10">
               {product.description}
             </p>
 
@@ -56,7 +56,7 @@ const ProductDetail = () => {
                 href={product.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-full font-semibold transition-all hover:-translate-y-0.5 mb-16"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all hover:-translate-y-0.5 mb-10 sm:mb-16"
               >
                 Open {product.name}
                 <ArrowUpRight className="w-4 h-4" />
@@ -66,15 +66,15 @@ const ProductDetail = () => {
 
           <ScreenshotPanel slug={product.slug} liveUrl={product.liveUrl} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16">
             {product.howItWorks && (
               <div>
-                <FadeInView as="h2" className="text-2xl font-bold mb-6 text-foreground block">
+                <FadeInView as="h2" className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground block">
                   How it works
                 </FadeInView>
-                <ol className="space-y-4">
+                <ol className="space-y-3 sm:space-y-4">
                   {product.howItWorks.map((step, index) => (
-                    <FadeInView key={step} as="li" delay={index * 75} className="flex items-start gap-4 text-foreground/90">
+                    <FadeInView key={step} as="li" delay={index * 75} className="flex items-start gap-3 sm:gap-4 text-sm sm:text-base text-foreground/90">
                       <span className="w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">
                         {index + 1}
                       </span>
@@ -87,12 +87,12 @@ const ProductDetail = () => {
 
             {product.features && (
               <div>
-                <FadeInView as="h2" className="text-2xl font-bold mb-6 text-foreground block">
+                <FadeInView as="h2" className="text-lg sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground block">
                   What it does
                 </FadeInView>
-                <ul className="space-y-4">
+                <ul className="space-y-3 sm:space-y-4">
                   {product.features.map((f, index) => (
-                    <FadeInView key={f} as="li" delay={index * 75} className="flex items-start gap-3 text-foreground/90">
+                    <FadeInView key={f} as="li" delay={index * 75} className="flex items-start gap-3 text-sm sm:text-base text-foreground/90">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
                       {f}
                     </FadeInView>

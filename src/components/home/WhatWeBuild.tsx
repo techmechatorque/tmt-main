@@ -5,14 +5,14 @@ import { FadeInView } from "@/components/FadeInView";
 
 const WhatWeBuild = () => {
   return (
-    <section id="products" className="py-24">
+    <section id="products" className="py-14 sm:py-20 lg:py-24">
       <div className="container mx-auto px-6">
-        <FadeInView className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+        <FadeInView className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-12">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
-              What we build
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-foreground">
+              Built Today, Shaping Tomorrow
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               Sorted honestly: what's live, what's being built, what's planned.
             </p>
           </div>

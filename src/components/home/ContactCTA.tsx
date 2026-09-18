@@ -4,10 +4,10 @@ import { FadeInView } from "@/components/FadeInView";
 
 const ContactCTA = () => {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-20 lg:py-24">
       <div className="container mx-auto px-6">
-        <FadeInView className="text-center bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 md:p-20 border border-primary/20 max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
+        <FadeInView className="text-center bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-6 sm:p-12 md:p-20 border border-primary/20 max-w-4xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-foreground">
             Have a project in mind?
           </h2>
           <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto">

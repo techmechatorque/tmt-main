@@ -18,14 +18,14 @@ const LiveProof = () => {
   const displayUrl = learningSpaces.liveUrl?.replace(/^https?:\/\//, "");
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-14 sm:py-20 lg:py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
           <FadeInView>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-foreground">
               {learningSpaces.name} is live today
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 sm:mb-8">
               {learningSpaces.description}
             </p>
 
@@ -52,7 +52,7 @@ const LiveProof = () => {
             </a>
           </FadeInView>
 
-          <FadeInView delay={150} className="rounded-2xl border border-border bg-card p-8">
+          <FadeInView delay={150} className="rounded-2xl border border-border bg-card p-5 sm:p-8">
             <div className="mb-6 pb-6 border-b border-border">
               <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
                 Active Environment

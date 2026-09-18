@@ -1,13 +1,28 @@
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import BrowserFrame from "@/components/showcase/BrowserFrame";
 import { products } from "@/data/products";
-import { screenshotFor } from "@/data/screenshots";
+import { learningSpacesHeroSlides } from "@/data/screenshots";
 import { company } from "@/data/company";
+
+const SLIDE_INTERVAL_MS = 3200;
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const Hero = () => {
   const learningSpaces = products.find((p) => p.slug === "learning-spaces");
-  const shot = learningSpaces ? screenshotFor(learningSpaces.slug) : undefined;
+
+  // Cycles through the extra Learning Spaces captures on the desktop hero,
+  // each one sliding in from the right (1s) before the next dwell begins.
+  const [activeSlide, setActiveSlide] = useState(0);
+  useEffect(() => {
+    if (learningSpacesHeroSlides.length <= 1 || prefersReducedMotion()) return;
+    const id = setInterval(() => {
+      setActiveSlide((i) => (i + 1) % learningSpacesHeroSlides.length);
+    }, SLIDE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section className="relative flex items-center min-h-[640px] sm:min-h-[700px] lg:min-h-[880px] pt-28 pb-24 lg:pt-32 lg:pb-32 overflow-hidden">
@@ -59,8 +74,51 @@ const Hero = () => {
                 className="absolute -top-5 -left-5 w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br from-primary to-accent -z-10"
                 style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%)" }}
               />
-              {shot ? (
-                <BrowserFrame url="learningspaces.co.in" src={shot.path} alt={shot.alt} notch />
+              <div className="relative">
+              {learningSpacesHeroSlides.length > 0 ? (
+                <div
+                  className="rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-[#0b0d12]"
+                  style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 48px), calc(100% - 48px) 100%, 0 100%)" }}
+                >
+                  <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.03] border-b border-white/10">
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+                    <span className="ml-3 text-[11px] text-white/40 font-mono truncate">learningspaces.co.in</span>
+                  </div>
+                  <div className="relative w-full aspect-[11/5] overflow-hidden">
+                    {learningSpacesHeroSlides.map((slide, i) => {
+                      const count = learningSpacesHeroSlides.length;
+                      // Shortest circular distance from the active slide — without this,
+                      // wrapping from the last slide back to the first (or stepping
+                      // backward past the first) would slide the whole width of the
+                      // strip instead of sliding in from the adjacent side.
+                      const raw = (i - activeSlide + count) % count;
+                      const signedOffset = raw > count / 2 ? raw - count : raw;
+                      // With an even slide count, the slide sitting exactly opposite the
+                      // active one has no single "shortest side" — its shortest-path sign
+                      // flips between transitions, which would otherwise fly it visibly
+                      // across the whole strip. It's always off past the immediate
+                      // neighbors anyway, so just keep anything beyond ±1 invisible.
+                      const isNear = Math.abs(signedOffset) <= 1;
+                      return (
+                        <img
+                          key={slide.path}
+                          src={slide.path}
+                          alt={slide.alt}
+                          className="absolute inset-0 w-full h-full object-contain"
+                          style={{
+                            transform: `translateX(${signedOffset * 100}%)`,
+                            opacity: isNear ? 1 : 0,
+                            transition: "transform 1000ms cubic-bezier(0.65,0,0.35,1), opacity 1000ms cubic-bezier(0.65,0,0.35,1)",
+                          }}
+                          loading="eager"
+                          decoding="async"
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
               ) : (
                 <div className="rounded-xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center text-muted-foreground text-sm">
                   Screenshot pending
@@ -78,6 +136,26 @@ const Hero = () => {
               >
                 <ArrowUpRight className="w-4 h-4 text-primary" />
               </a>
+              </div>
+
+              {/* Slide bars — show which capture is active and, since they jump straight
+                  to that index, make the current direction/position obvious at a glance. */}
+              {learningSpacesHeroSlides.length > 1 && (
+                <div className="flex items-center justify-center gap-1.5 mt-8">
+                  {learningSpacesHeroSlides.map((slide, i) => (
+                    <button
+                      key={slide.path}
+                      type="button"
+                      onClick={() => setActiveSlide(i)}
+                      aria-label={`Show slide ${i + 1}`}
+                      aria-current={i === activeSlide}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        i === activeSlide ? "w-8 bg-primary" : "w-3 bg-foreground/15 hover:bg-foreground/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -4,19 +4,30 @@ import { ArrowRight, ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
 import { workItems } from "@/data/work";
 import { screenshotFor } from "@/data/screenshots";
 import { FadeInView } from "@/components/FadeInView";
-
-// A symmetric fan: the active card sits centered, its left neighbor leans out to
-// the left (rotated counter-clockwise), its right neighbor leans out to the right
-// (rotated clockwise) — like a hand of 3 cards, not a one-directional stack.
-// GROUP_SHIFT nudges the whole fan slightly right within its box.
-const GROUP_SHIFT = 28;
-const styleFor = (signedOffset: number) => {
-  if (signedOffset === 0) return { rotate: 0, x: 0, y: 0, scale: 1, opacity: 1, z: 30 };
-  const side = Math.sign(signedOffset); // -1 = left neighbor, +1 = right neighbor
-  return { rotate: side * 9, x: side * 150, y: 24, scale: 0.93, opacity: 0.6, z: 20 };
-};
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const WorkTeaser = () => {
+  const isMobile = useIsMobile();
+  // A symmetric fan: the active card sits centered, its left neighbor leans out to
+  // the left (rotated counter-clockwise), its right neighbor leans out to the right
+  // (rotated clockwise) — like a hand of 3 cards, not a one-directional stack.
+  // GROUP_SHIFT nudges the whole fan slightly right within its box — on mobile the
+  // box is narrow enough that any shift pushes the front card off-center, so it's
+  // zeroed there, and the neighbors lean out less so they don't get clipped.
+  const GROUP_SHIFT = isMobile ? 0 : 28;
+  const styleFor = (signedOffset: number) => {
+    if (signedOffset === 0) return { rotate: 0, x: 0, y: 0, scale: 1, opacity: 1, z: 30 };
+    const side = Math.sign(signedOffset); // -1 = left neighbor, +1 = right neighbor
+    return {
+      rotate: side * (isMobile ? 6 : 9),
+      x: side * (isMobile ? 70 : 150),
+      y: isMobile ? 16 : 24,
+      scale: isMobile ? 0.88 : 0.93,
+      opacity: 0.6,
+      z: 20,
+    };
+  };
+
   const count = workItems.length;
   // Start centered on Gandhi Century High School specifically (falling back to the
   // middle item if it's ever removed from the list).
@@ -26,7 +37,7 @@ const WorkTeaser = () => {
   const go = (delta: number) => setActiveIndex((i) => (i + delta + count) % count);
 
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-20 lg:py-24">
       <div className="container mx-auto px-6">
         <FadeInView className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div className="max-w-2xl">
@@ -43,7 +54,7 @@ const WorkTeaser = () => {
           </Link>
         </FadeInView>
 
-        <FadeInView className="relative w-full max-w-3xl mx-auto h-[460px] sm:h-[440px]">
+        <FadeInView className="relative w-full max-w-3xl mx-auto h-[360px] sm:h-[440px] overflow-hidden">
           {workItems.map((item, i) => {
             // Distance from the active card, wrapped to the shortest signed direction
             // (e.g. for 3 items: 0 = center, +1 = right neighbor, -1 = left neighbor).
@@ -62,12 +73,12 @@ const WorkTeaser = () => {
                     <ImageOff className="w-8 h-8 text-muted-foreground" />
                   )}
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <span className="text-xs font-bold uppercase tracking-wide text-primary mb-2 block">
+                <div className="p-3 sm:p-6 flex flex-col flex-grow">
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-primary mb-1 sm:mb-2 block">
                     {item.client}
                   </span>
-                  <h3 className="text-lg font-bold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-grow">
+                  <h3 className="text-sm sm:text-lg font-bold text-foreground mb-1 sm:mb-2 line-clamp-2">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-2 sm:mb-4 flex-grow line-clamp-3 sm:line-clamp-none">
                     {item.summary}
                   </p>
                   {isFront && (
@@ -94,7 +105,7 @@ const WorkTeaser = () => {
             // Anchored to the horizontal center of the box (left-1/2 + the -50% in
             // the transform above), then nudged out to each side — that's what makes
             // this a fan around a center point instead of a stack piling one way.
-            const commonClass = "absolute left-1/2 top-0 w-full max-w-md h-full";
+            const commonClass = "absolute left-1/2 top-0 w-full max-w-[260px] sm:max-w-md h-full";
 
             return isFront ? (
               <Link key={item.slug} to={`/work/${item.slug}`} className={commonClass} style={commonStyle}>

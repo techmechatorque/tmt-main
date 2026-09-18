@@ -43,22 +43,22 @@ const Header = () => {
         }`}
       >
         <div className="px-2 sm:px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             <Link
               to="/"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex items-center gap-3 group"
+              className="flex items-center gap-2 sm:gap-3 group flex-shrink-0"
             >
               <img
                 src={tmtLogo}
                 alt="TMT Logo"
-                className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
+                className="h-8 sm:h-12 w-auto flex-shrink-0 group-hover:scale-105 transition-transform duration-300"
               />
               <div className="flex flex-col leading-tight">
-                <span className="text-lg font-bold text-foreground tracking-tight">
+                <span className="text-sm sm:text-lg font-bold text-foreground tracking-tight whitespace-nowrap">
                   TechMecha
                 </span>
-                <span className="text-lg font-bold text-primary">Torque</span>
+                <span className="text-sm sm:text-lg font-bold text-primary whitespace-nowrap">Torque</span>
               </div>
             </Link>
 
@@ -121,7 +121,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay — floats as its own glass panel below the header bar */}
       {isMenuOpen && (
-        <div className="xl:hidden fixed top-24 left-4 right-4 bottom-4 bg-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl z-50 overflow-y-auto p-8 animate-in fade-in slide-in-from-top-4 duration-300 shadow-2xl">
+        <div className="xl:hidden fixed top-20 sm:top-24 left-4 right-4 bottom-4 bg-background/95 backdrop-blur-2xl border border-foreground/10 rounded-2xl z-50 overflow-y-auto p-6 sm:p-8 animate-in fade-in slide-in-from-top-4 duration-300 shadow-2xl">
           <nav className="flex flex-col space-y-6">
             <Link
               to="/"

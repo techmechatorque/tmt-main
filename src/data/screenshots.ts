@@ -34,6 +34,47 @@ export const screenshots: Record<string, Screenshot> = {
     capturedAt: "2026-09-17",
     alt: "Gandhi Century High School management system",
   },
+  "gandhi-century-high-school-landing": {
+    path: "/screens/GCHS/GCHS-landing-page.png",
+    capturedAt: "2026-09-17",
+    alt: "Gandhi Century High School landing page",
+  },
 };
 
 export const screenshotFor = (slug: string) => screenshots[slug];
+
+// Extra Learning Spaces captures for the Hero's auto-advancing slideshow —
+// numbered in the filename, played back in that same order (1 is the
+// original home-desktop.png, then 2 through 6).
+export const learningSpacesHeroSlides: Screenshot[] = [
+  {
+    path: "/screens/learning-spaces/home-desktop.png",
+    capturedAt: "2026-09-02",
+    alt: "Learning Spaces dashboard showing course progress and modules",
+  },
+  {
+    path: "/screens/learning-spaces/home-desktop-2.png",
+    capturedAt: "2026-09-18",
+    alt: "Learning Spaces product view 2",
+  },
+  {
+    path: "/screens/learning-spaces/home-desktop-3.png",
+    capturedAt: "2026-09-18",
+    alt: "Learning Spaces product view 3",
+  },
+  {
+    path: "/screens/learning-spaces/home-desktop-4.png",
+    capturedAt: "2026-09-18",
+    alt: "Learning Spaces product view 4",
+  },
+  {
+    path: "/screens/learning-spaces/home-desktop-5.png",
+    capturedAt: "2026-09-18",
+    alt: "Learning Spaces product view 5",
+  },
+  {
+    path: "/screens/learning-spaces/home-desktop-6.png",
+    capturedAt: "2026-09-18",
+    alt: "Learning Spaces product view 6",
+  },
+];

@@ -3,7 +3,7 @@ import { beyondLaunchDetails } from "@/data/services";
 
 const BeyondLaunch = () => {
   return (
-    <section className="py-24">
+    <section className="py-14 sm:py-20 lg:py-24">
       <div className="container mx-auto px-6">
         <FadeInView className="max-w-2xl mb-14">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">

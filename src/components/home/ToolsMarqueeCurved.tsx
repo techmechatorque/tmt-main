@@ -1,43 +1,15 @@
 import { techStack } from "@/data/techStack";
 
 const ITEMS = techStack.length;
-const PERIODS = 2; // one hump per duplicated set — stays in sync with the loop
-
-// Samples a smooth sine wave into an SVG polyline path across a 0-100 viewBox,
-// so it can be stretched (preserveAspectRatio="none") to exactly match the
-// scrolling track's own width and height — same curve, same box, same motion.
-const wavePath = (amplitude: number, baseline: number, phase = 0, steps = 120) => {
-  let d = "";
-  for (let i = 0; i <= steps; i++) {
-    const x = (i / steps) * 100;
-    const y = baseline - amplitude * Math.sin((i / steps) * PERIODS * 2 * Math.PI + phase);
-    d += `${i === 0 ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)} `;
-  }
-  return d.trim();
-};
-
-const TOP_RAIL = wavePath(10, 16);
-const BOTTOM_RAIL = wavePath(10, 84);
 
 // Same tool list and scroll mechanics as the Products page's straight marquee,
-// but everything rides a curve instead of a flat line — the pills bob on a
-// sine hump per repeating set, and the top/bottom rails bend through the exact
-// same wave, both living inside the same scrolling track so they move as one
-// piece instead of pills wobbling between two straight lines.
+// but each item rides an arc instead of a flat line — a sine hump computed per
+// item position within one repeating set, so the wave loops seamlessly with
+// the horizontal scroll instead of jumping at the seam.
 const ToolsMarqueeCurved = () => {
   return (
-    <div className="relative h-44 overflow-x-hidden">
+    <div className="relative h-44 overflow-hidden">
       <div className="relative flex h-full w-max items-center animate-marquee-reverse hover:[animation-play-state:paused]">
-        <svg
-          className="absolute inset-0 w-full h-full"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path d={TOP_RAIL} stroke="hsl(var(--border))" strokeWidth={1.5} fill="none" vectorEffect="non-scaling-stroke" />
-          <path d={BOTTOM_RAIL} stroke="hsl(var(--border))" strokeWidth={1.5} fill="none" vectorEffect="non-scaling-stroke" />
-        </svg>
-
         {[0, 1].map((copy) => (
           <div key={copy} className="flex items-center flex-shrink-0" aria-hidden={copy === 1}>
             {techStack.map((t, i) => {

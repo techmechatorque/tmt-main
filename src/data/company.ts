@@ -24,6 +24,7 @@ export const company = {
     learningSpaces: "https://learningspaces.co.in",
     hotelVedha: "https://hotelvedha.com",
     swagath: "https://swagath.in",
+    gandhiCenturyHighSchool: "https://www.gchssrd.com/",
   },
 } as const;
 

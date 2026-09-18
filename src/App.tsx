@@ -23,6 +23,7 @@ import AIBootcamp from "./pages/AIBootcamp";
 import Certifications from "./pages/Certifications";
 import CourseCurriculum from "./pages/CourseCurriculum";
 import { ThemeProvider } from "./components/ThemeProvider";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
