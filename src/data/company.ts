@@ -5,6 +5,7 @@ export const company = {
   name: "Tech Mecha Torque",
   legalName: "TechMecha Torque",
   email: "team@techmechatorque.com",
+  Founderemail: "ceo@techmechatorque.com",
   phone: "+91 7993442607",
   phoneDisplay: "+91 79934 42607",
   whatsappUrl: "https://wa.me/917993442607",
@@ -18,6 +19,7 @@ export const company = {
   social: {
     linkedin: "https://www.linkedin.com/company/techmecha-torque",
     instagram: "https://www.instagram.com/techmechatorque",
+    FounderLinkedin: "https://www.linkedin.com/in/jayachandra-reddy-9b1199384/"
   },
   domains: {
     corporate: "https://techmechatorque.com",

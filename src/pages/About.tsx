@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Linkedin, Mail, Quote } from "lucide-react";
+import { ArrowRight, Linkedin, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FadeInView } from "@/components/FadeInView";
-import founderPhoto from "@/assets/founder-photo.png";
+import founderPhoto from "@/assets/founder-photo.jpeg";
 import { company } from "@/data/company";
 import { services, lifecycle } from "@/data/services";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -104,7 +104,7 @@ const About = () => {
                     <p className="text-sm sm:text-base text-primary font-semibold mb-3 sm:mb-4">Founder</p>
                     <div className="flex gap-3 justify-center sm:justify-start">
                       <a
-                        href={company.social.linkedin}
+                        href={company.social.FounderLinkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
@@ -112,7 +112,7 @@ const About = () => {
                         <Linkedin className="w-4 h-4 text-primary" />
                       </a>
                       <a
-                        href={`mailto:${company.email}`}
+                        href={`mailto:${company.Founderemail}`}
                         className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
                       >
                         <Mail className="w-4 h-4 text-primary" />
