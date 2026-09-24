@@ -35,8 +35,8 @@ const About = () => {
             <FadeInView delay={100}>
               <h2 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4 text-foreground">Built Today, Shaping Tomorrow</h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                TechMecha Torque is a small software studio building digital platforms
-                for real-world businesses. Learning Spaces, our coding education
+                TechMecha Torque builds digital platforms for real-world businesses.
+                Learning Spaces, our coding education
                 platform, is live and in use today. We've also delivered real client
                 work — restaurant websites for Hotel Vedha and Swagath — and we're
                 building toward more: campus communication, attendance tracking, HR and
