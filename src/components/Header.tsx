@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sun, Moon, ArrowUpRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -14,6 +14,14 @@ const NAV_LINKS = [
   { to: "/careers", label: "Careers" },
 ];
 
+// Every page renders its own <Header />, so navigating between pages fully
+// unmounts and remounts this component — component state alone can't carry
+// the pill's position across that. This module-level variable survives the
+// remount (the module itself stays loaded across navigation), so the new
+// Header instance picks up exactly where the pill last was instead of
+// resetting to zero and sliding in from the edge on every click.
+let lastIndicatorPosition = { left: 0, width: 0, opacity: 0 };
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,6 +29,23 @@ const Header = () => {
   const location = useLocation();
 
   const isActive = (to: string) => location.pathname === to || location.pathname.startsWith(`${to}/`);
+
+  // A single pill that slides between nav items instead of each link just
+  // snapping its own background on/off — measure the active link's position
+  // and animate the shared indicator to match whenever the route changes.
+  const navItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [indicator, setIndicator] = useState(lastIndicatorPosition);
+
+  useLayoutEffect(() => {
+    const activeIndex = NAV_LINKS.findIndex((link) => isActive(link.to));
+    const el = navItemRefs.current[activeIndex];
+    const next = el
+      ? { left: el.offsetLeft, width: el.offsetWidth, opacity: 1 }
+      : { ...lastIndicatorPosition, opacity: 0 }; // fade out in place, don't collapse to zero
+    lastIndicatorPosition = next;
+    setIndicator(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   // Transparent right at the top (floats over the hero, as intended), but once you
   // scroll past it the header needs its own background — otherwise whatever's
@@ -66,15 +91,18 @@ const Header = () => {
                 middle, theme toggle + Contact anchor the end (right) */}
             <div className="hidden xl:flex items-center justify-between w-full">
               <div className="flex-1 flex justify-center">
-                <div className="flex items-center gap-2 rounded-full bg-foreground/5 border border-foreground/10 p-2">
-                  {NAV_LINKS.map((link) => (
+                <div className="relative flex items-center gap-2 rounded-full bg-foreground/5 border border-foreground/10 p-2">
+                  <div
+                    className="absolute top-2 bottom-2 rounded-full bg-background shadow-sm transition-all duration-300 ease-out pointer-events-none"
+                    style={{ left: indicator.left, width: indicator.width, opacity: indicator.opacity }}
+                  />
+                  {NAV_LINKS.map((link, index) => (
                     <Link
                       key={link.to}
+                      ref={(el) => (navItemRefs.current[index] = el)}
                       to={link.to}
-                      className={`px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                        isActive(link.to)
-                          ? "bg-background text-foreground shadow-sm"
-                          : "text-foreground/60 hover:text-foreground"
+                      className={`relative z-10 px-5 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-300 ${
+                        isActive(link.to) ? "text-foreground" : "text-foreground/60 hover:text-foreground"
                       }`}
                     >
                       {link.label}

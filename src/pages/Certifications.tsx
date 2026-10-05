@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowDown, MessageCircle } from "lucide-react";
+import { ArrowDown, ChevronRight, MessageCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { learningTracks } from "@/data/courses";
-import React from "react";
+import React, { useRef } from "react";
 import { FadeInView } from "@/components/FadeInView";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
@@ -14,6 +14,15 @@ const Certifications = () => {
     description: "Structured learning tracks and certifications from TechMecha Torque.",
     path: "/training/certifications",
   });
+
+  // One horizontal scroller per track (mobile carousel) — the swipe-hint arrow
+  // uses these to scroll to the next card on tap instead of just hinting at it.
+  const scrollRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollToNext = (trackIdx: number) => {
+    const el = scrollRefs.current[trackIdx];
+    if (!el) return;
+    el.scrollBy({ left: el.clientWidth + 24, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -58,7 +67,10 @@ const Certifications = () => {
 
                 {/* Mobile: one course per row, swipe left to reach the next (scroll-snap
                     carousel). Desktop (md+): unchanged vertical stack with connectors. */}
-                <div className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none flex-grow gap-6 md:gap-0 -mx-6 px-6 md:mx-0 md:px-0 scroll-pl-6 md:scroll-pl-0">
+                <div
+                  ref={(el) => (scrollRefs.current[trackIdx] = el)}
+                  className="flex flex-row md:flex-col overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none flex-grow gap-6 md:gap-0 -mx-6 px-6 md:mx-0 md:px-0 scroll-pl-6 md:scroll-pl-0"
+                >
                   {track.courses.map((course, courseIdx) => {
                     const isBasics = course.month === "Month - 1";
                     const isFirstInternship = course.month === "Month - 2";
@@ -88,40 +100,56 @@ const Certifications = () => {
 
                         {/* Course Card — fixed height so every card in the grid matches,
                             regardless of how long its title/description text is */}
-                        <FadeInView delay={courseIdx * 100} className="w-full">
-                          <Card className="card-professional group w-full h-[310px] sm:h-[400px] flex flex-col p-0 overflow-hidden relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <div className="relative w-full">
+                          <FadeInView delay={courseIdx * 100} className="w-full">
+                            <Card className="card-professional group w-full h-[310px] sm:h-[400px] flex flex-col p-0 overflow-hidden relative">
+                              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
-                          <CardContent className="p-4 sm:p-6 flex flex-col h-full items-center text-center relative z-10">
+                            <CardContent className="p-4 sm:p-6 flex flex-col h-full items-center text-center relative z-10">
 
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-3 sm:mb-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
-                              {React.cloneElement(course.icon as React.ReactElement, { className: "w-5 h-5 sm:w-6 sm:h-6 text-primary" })}
-                            </div>
+                              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-3 sm:mb-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-500">
+                                {React.cloneElement(course.icon as React.ReactElement, { className: "w-5 h-5 sm:w-6 sm:h-6 text-primary" })}
+                              </div>
 
-                            <div className="bg-primary/10 text-primary text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3 uppercase tracking-wider flex-shrink-0">
-                              {isBasics ? "Month - 1" : (course.month === "Month - 2" ? "Phase 1" : "Phase 2")}
-                            </div>
+                              <div className="bg-primary/10 text-primary text-[10px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full mb-2 sm:mb-3 uppercase tracking-wider flex-shrink-0">
+                                {isBasics ? "Month - 1" : (course.month === "Month - 2" ? "Phase 1" : "Phase 2")}
+                              </div>
 
-                            <h3 className="text-base sm:text-xl font-bold mb-2 sm:mb-3 line-clamp-2 flex-shrink-0 group-hover:text-primary transition-colors duration-300">{course.name}</h3>
+                              <h3 className="text-base sm:text-xl font-bold mb-2 sm:mb-3 line-clamp-2 flex-shrink-0 group-hover:text-primary transition-colors duration-300">{course.name}</h3>
 
-                            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed flex-grow mb-4 sm:mb-6 line-clamp-3">
-                              {course.desc}
-                            </p>
+                              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed flex-grow mb-4 sm:mb-6 line-clamp-3">
+                                {course.desc}
+                              </p>
 
-                            {/* Buttons */}
-                            <div className="flex items-center w-full mt-auto pt-4 sm:pt-5 border-t border-border/10 flex-shrink-0">
-                              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full block group/btn">
-                                <Button
-                                  variant="outline"
-                                  className="w-full text-xs sm:text-sm font-semibold rounded-xl h-9 sm:h-11 bg-[#25D366]/5 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all duration-300 shadow-sm group-hover/btn:shadow-[#25D366]/20"
-                                >
-                                  <MessageCircle className="w-4 h-4 mr-2" /> Contact
-                                </Button>
-                              </a>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </FadeInView>
+                              {/* Buttons */}
+                              <div className="flex items-center w-full mt-auto pt-4 sm:pt-5 border-t border-border/10 flex-shrink-0">
+                                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full block group/btn">
+                                  <Button
+                                    variant="outline"
+                                    className="w-full text-xs sm:text-sm font-semibold rounded-xl h-9 sm:h-11 bg-[#25D366]/5 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all duration-300 shadow-sm group-hover/btn:shadow-[#25D366]/20"
+                                  >
+                                    <MessageCircle className="w-4 h-4 mr-2" /> Contact
+                                  </Button>
+                                </a>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </FadeInView>
+
+                          {/* Swipe hint — mobile only, peeking into the gap so it's clear
+                              there's another card to scroll to. Desktop keeps the vertical
+                              connector below instead. */}
+                          {courseIdx < track.courses.length - 1 && (
+                            <button
+                              type="button"
+                              onClick={() => scrollToNext(trackIdx)}
+                              aria-label="Next course"
+                              className="md:hidden absolute top-1/2 -right-3 -translate-y-1/2 z-20 w-6 h-6 rounded-full bg-card border border-primary/30 shadow-lg flex items-center justify-center animate-pulse active:scale-90 transition-transform"
+                            >
+                              <ChevronRight className="w-3.5 h-3.5 text-primary" />
+                            </button>
+                          )}
+                        </div>
 
                         {/* Downward Connector Flow — vertical layout only, hidden on mobile's horizontal carousel */}
                         {courseIdx < track.courses.length - 1 && (

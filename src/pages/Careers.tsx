@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import {
-  Sparkles,
   Briefcase,
   Users,
   Heart,
@@ -39,13 +38,6 @@ const Careers = () => {
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
               <FadeInView delay={100}>
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/90 to-accent backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/30 mb-5 sm:mb-8">
-                  <Sparkles className="w-4 h-4 text-white" />
-                  <span className="text-xs sm:text-sm font-bold text-white">
-                    We&apos;re Hiring!
-                  </span>
-                </div>
-
                 <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-8 text-foreground leading-tight">
                   Join the Future of EdTech
                 </h1>
